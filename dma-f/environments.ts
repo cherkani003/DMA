@@ -1,0 +1,3 @@
+export const GOOGLE_API_KEY = "PASTE_YOUR_KEY_HERE";
+export const OPENAI_API_KEY = "PASTE_YOUR_KEY_HERE";
+export const NEWS_API_KEY ="PASTE_YOUR_KEY_HERE";

@@ -1,0 +1,113 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+// enum for gender
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+enum BloodType {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+enum DiabetesType {
+  TYPE1
+  TYPE2
+  GESTATIONAL
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  email String @unique
+  hash String
+
+firstName String?
+lastName String?
+
+// for User profile 
+
+age Int?
+gender Gender?
+bloodType BloodType?
+weight Int?
+height Int?
+diabetesType DiabetesType?
+
+
+
+meds Meds[]
+metrics Metrics[]
+
+@@map("users")
+
+  
+}
+
+model Meds {
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name      String
+  dosage    String
+  frequency String
+  notes       String?
+
+   startDate   DateTime @default(now())
+   endDate     DateTime?
+
+   //reminders   Boolean
+
+   // Whether to take medication before or after food
+  foodTiming  String
+
+// relationship with User table
+userId      Int
+users        User   @relation(fields: [userId], references: [id])
+  
+@@map("meds")
+}
+
+model Metrics {
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bloodSugar Float
+  bloodPressure String
+  a1cLevel Float? // average blood glucose levels over the past 2-3 months.
+
+   exerciseDuration Int?   // Duration of exercise in minutes
+  exerciseType String?    // Type of exercise (e.g., walking, jogging)
+
+  // Water intake
+  waterIntake  Int?
+
+    // Nutritional content (optional)
+  protein      Int?
+  fat          Int?
+  fiber        Int?
+  vitamins     String?
+  minerals     String?
+
+userId Int
+users User @relation(fields: [userId], references: [id])
+@@map("metrics")
+}
