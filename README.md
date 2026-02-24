@@ -33,27 +33,33 @@ Follow these steps to set up your development environment.
 - **Git**: To manage version control  
 
 ### 2. Backend Setup (`dma-api`)
-```bash
-cd dma-api
-npm install                # Install dependencies
-docker-compose up -d       # Start PostgreSQL container
-npx prisma migrate dev     # Push database schema
-npm run start:dev          # Start development server
+cd dma-api  
+npm install                # Install dependencies  
+docker-compose up -d       # Start PostgreSQL container  
+npx prisma migrate dev     # Push database schema  
+npm run start:dev          # Start development server  
 
-### 2. Frontend Setup (`dma-f`)
-```bash
-cd ../dma-f
-npm install                # Install dependencies
-npx expo start             # Start the mobile app
+### 3. Frontend Setup (`dma-f`)
+cd ../dma-f  
+npm install                # Install dependencies  
+npx expo start             # Start the mobile app  
 
-Important: Update your API connection.git add README.md
-Replace the IP address with your laptop's local IP (e.g., 192.168.x.x)
+**Important:** Update your API connection.  
+- Open `environments.ts`  
+- Replace the IP address with your laptop's local IP (e.g., `192.168.x.x`)  
 
-🔒 Security Note
-This project uses several API keys (OpenAI, Google, NewsAPI). These are not included in the repository for security reasons.
-To enable these features:
-Locate environments.ts
-Replace the PASTE_YOUR_KEY_HERE placeholders with your own valid API keys.
+---
+
+## 🔒 Security Note
+
+This project uses several API keys (OpenAI, Google, NewsAPI). These are **not included** in the repository for security reasons.  
+
+To enable these features:  
+- Locate `environments.ts`  
+- Replace the `PASTE_YOUR_KEY_HERE` placeholders with your own valid API keys.
+
+---
 
 ## 📝 License
-This project was developed for academic purposes at VGTU.
+
+This project was developed for **academic purposes at VGTU**.
